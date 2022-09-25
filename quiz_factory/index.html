@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <title>Document</title>
+
+    <!--  -->
+    <!-- Responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- CSS -->
+    <meta name="css" class="sleepykoala" />
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Custom Font -->
+    <link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet'>
+</head>
+<body>
+    <!--    
+    Why I made this?
+        Simply because SoloLearn don't have CSS Challenge and I want the web developers here to test their mastery with CSS and also to test how well they know the properties and values of CSS. And of course, this is not just a test, but also a lesson for them to know the definitions and differences of the properties.
+                        
+    How to get a perfect score?
+        Easy. Just visualize the questions given. Don't rush to answer a particular question. Just relax and take time to understand the question, I didn't put a time limit in this quiz.
+                        
+    Cheating?
+        Well, that's not a problem, it's up to you. This is just a quiz and you can try to take a peek at the answers. The questions and choices placement are randomized so it will be difficult to remember all of them.
+                           
+    "I would prefer even to fail with honor than win by cheating."
+                                                        -Sophocles
+    -->
+        <!-- QUIZ INTRO -->
+        <main class="intro-wrapper">
+            <img class="quiz-logo" src="https://i.ibb.co/c8Qx9mZ/css-3-logo.jpg" alt="css-3-logo" border="0">
+            <p class="quiz-title">CSS3 Quiz</p>
+            <button class="start">START</button><br />
+            <code>Created by: Mukhammadyusuf Abdurakhimov</code>
+        </main>
+        <!-- END OF QUIZ INTRO -->
+        
+        <!-- ITEM NUMBER SECTION -->
+        <main class="item-container">
+            <section class="item-header">
+                <span>Select Number of Items</span>
+            </section>
+            
+            <section class="item-body">
+                <button class="item-number">5</button>
+                <button class="item-number">10</button>
+                <button class="item-number">20</button>
+                <button id="item-four" class="item-number">30</button>
+            </section>
+        </main>
+        <!-- END OF ITEM NUMBER SECTION -->
+        
+        <!-- QUIZ SECTION -->
+        <main class="quiz-container">
+            <input type="hidden" id="SleepyKoala" name="SleepyKoala" />
+            <section class="quiz-header">
+                <span id="score">Score:&nbsp;<span class="score">0</span>/<span class="quiz-items">30</span></span>
+            <p class="back-btn">Back</p>
+                <p class="result-quiz-num">Quiz <span class="quiz-number">1</span> out of <span class="quiz-items"></span></p>
+            </section>
+            
+            <section class="quiz-body">
+                <p class="quiz-question"></p>
+                <br />
+                
+                <button class="btn-answer"></button>
+                
+                <button id="btn1" class="choices"></button>
+                <button id="btn2" class="choices"></button>
+                <button id="btn3" class="choices"></button>
+                <button id="btn4" class="choices"></button>
+                <br /><br /><br /><br />
+            </section>
+            
+            
+            <!-- QUIZ CHECKER -->
+            <main class="checker-wrapper">
+                <p class="checker"></p>
+            </main>
+            <!-- END OF QUIZ CHECKER -->
+            
+            
+            <!-- QUIZ NUMBER -->
+            <main class="quizNum-wrapper">
+                <section class="quizNum-container">
+                    <p class="quiz-number-text">Quiz No. <span class="quiz-number">1</span></p>
+                </section>
+            </main>
+            <!-- END OF QUIZ NUMBER -->
+            
+            
+            <!-- QUIZ RESULT SECTION -->
+            <main class="quiz-result">
+                <table class="result-table">
+                    <tr>
+                        <th colspan="2">Total Score: <span class="score"></span></th>
+                    </tr>
+                    <tr>
+                        <td>Item No.</td>
+                        <td>Result</td>
+                    </tr>
+                </table>
+                <p class="view-answer">View Correct Answers</p>
+                <br /><br /><br /><br />  
+            </main>
+            <!-- END OF QUIZ RESULT -->
+            
+            
+            <!-- QUIZ FOOTER -->
+            <section class="quiz-footer">
+                <button class="submit-answer">SUBMIT ANSWER</button>
+                <button class="play-again">RETAKE QUIZ</button>
+                <button class="prev-btn">PREV</button>
+                <button class="next-btn">NEXT</button>
+            </section>
+            <!-- END OF QUIZ FOOTER -->
+            
+        </main>
+        <!-- END OF QUIZ SECTION -->
+    
+</body>
+</html>

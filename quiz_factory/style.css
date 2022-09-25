@@ -1,0 +1,360 @@
+/* Created by BroFar */
+
+/* Created by Mukhammadyusuf Abdurakhimov */
+
+/* Created by MySelf */
+
+/* GENERAL CSS */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Tahoma;
+    background: #ddd;
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+}
+*:focus{
+    outline: none;
+}
+button{
+    cursor: hand;
+}
+koala{
+    color: indianred;
+    background-color: #eee;
+    padding: 3px;
+    border-radius: 2px;
+    font-family: Courier;
+    font-weight: bold;
+}
+q{
+    font-family: Times New Roman;
+}
+/* END OF GENERAL CSS */
+
+/* MODAL CSS */
+.modal-wrapper{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+}
+.modal-container{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.modal{
+    position: relative;
+    height: 90%;
+    width: 80%;
+    background-color: #ddd;
+}
+.modal-header{
+    border-bottom: 1px solid #aaa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-body{
+    position: relative;
+    height: 78%;
+    padding: 10px 15px;
+    overflow-y: auto;
+}
+.modal-footer{
+    height: 50px;
+    border-top: 1px solid #aaa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.title{
+    font-size: 1.2em;
+}
+.info{
+    text-indent: 20px;
+    text-align: justify;
+}
+.btn-close{
+    display: block;
+    height: 35px;
+    width: 90%;
+    border: 0;
+    border-radius: 2px;
+    background-color: indianred;
+    color: white;
+}
+
+
+/* QUIZ INTRO CSS */
+.intro-wrapper{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.quiz-logo{
+    height: 30%;
+    width: auto;
+}
+.quiz-title{
+    font-size: 2em;
+    color: rgb(38, 77, 228);
+}
+code{
+    color: rgb(38, 77, 228);
+}
+.start{
+    height: 35px;
+    width: 30%;
+    font-size: 1em;
+    color: white;
+    background-color: rgb(38, 77, 228);
+    border: 0;
+    border-radius: 3px;
+    transition: background 250ms;
+}
+.start:hover{
+    background-color: rgb(20, 49, 163);
+}
+/* END OF QUIZ INTRO */
+
+/* QUIZ ITEM CSS */
+.item-container{
+    display: none;
+}
+
+/* QUIZ CHECKER CSS */
+.checker-wrapper{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.checker{
+    font-size: 2em;
+    letter-spacing: 1px;
+    display: none;
+}
+/* END OF QUIZ CHECKER */
+
+
+/* QUIZ NUMBER CSS */
+.quizNum-wrapper{
+    display: none;
+}
+.quizNum-container{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.quiz-number-text{
+    font-size: 2em;
+    color: rgb(38, 77, 228);
+}
+/* END OF QUIZ NUMBER */
+
+
+/* MAIN QUIZ CSS */
+.quiz-container{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow-x: auto;
+    display: none;
+}
+
+/* Header Section CSS */
+.quiz-header, .item-header{
+    position: fixed;
+    height: 40px;
+    width: 100%;
+    top: 0;
+    border-bottom: 1px solid #ccc;
+    font-size: 1em;
+    color: #555;
+    background-color: #ddd;
+    letter-spacing: 1px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.result-quiz-num{
+    float: right;
+    margin-right: 15px;
+    display: none;
+}
+.back-btn{
+    margin-left: 15px;
+    float: left;
+    display: none;
+    cursor: hand;
+}
+
+/* Body Section CSS */
+.quiz-body, .item-body{
+    margin-top: 40px;
+    padding: 5px 15px;
+    display: none;
+}
+.item-body{
+    position: fixed;
+    height: 100%;
+    width: 93%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.quiz-question{
+    color: #444;
+    line-height: 1.6em;
+    height: 80px;
+}
+.choices-container{
+    position: fixed;
+    bottom: 0;
+    width: 90%;
+    margin-bottom: 20%;
+}
+.choices, .item-number, .btn-answer{
+    display: block;
+    margin: 0 auto;
+    height: 40px;
+    width: 100%;
+    padding: 0 20px;
+    border: 0;
+    border-bottom: 1px solid #aaa;
+    text-align: left;
+    background-color: #eee;
+    box-shadow: 2px 2px 4px #666;
+    transition: ease-in-out 250ms;
+}
+.item-number:hover{
+    background-color: rgb(38, 77, 228);
+    color: white;
+}
+.item-number{
+    text-align: center;
+}
+.btn-answer{
+    background-color: rgb(38, 77, 228);
+    color: white;
+    border: 0;
+    border-radius: 2px;
+    transition: ease-in-out 250ms;
+}
+#btn4, #item-four{
+    border-bottom: 0;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    margin-bottom: 20px;
+}
+#btn1{
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}
+.btn-answer{
+    display: none;
+}
+.quiz-result{
+    padding: 20px;
+    text-align: center;
+    display: none;
+}
+.result-table{
+    width: 200px;
+    margin: 0 auto;
+    background-color: #eee;
+    border: 0;
+    border-radius: 2px;
+    font-size: 0.8em;
+    color: #333;
+}
+.result-table td{
+    text-align: center;
+    padding: 5px 5px;
+}
+.item-result{
+    font-size: 1.2em;
+}
+.correct{
+    color: mediumseagreen;
+}
+.wrong{
+    color: firebrick;
+}
+.view-answer{
+    font-size: 0.8em;
+    color: steelblue;
+    text-transform: uppercase;
+    cursor: hand;
+}
+
+/* Footer Section CSS */
+.quiz-footer{
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    border-top: 1px solid #ccc;
+    background-color: #ddd;
+}
+.submit-answer, .play-again{
+    position: relative;
+    top: 50px;
+    height: 35px;
+    width: 90%;
+    display: block;
+    margin: 10px auto;
+    background-color: mediumseagreen;
+    color: white;
+    border: 0;
+    border-radius: 2px;
+}
+.submit-answer:hover, .play-again:hover{
+    background-color: seagreen;
+}
+.play-again{
+    display: none;
+}
+.next-btn, .prev-btn{
+    position: relative;
+    height: 35px;
+    width: 45%;
+    top: 50px;
+    border: 0;
+    border-radius: 2px;
+    display: none;
+    margin: 10px 2%;
+    color: white;
+}
+.next-btn{
+    background-color: mediumseagreen;
+}
+.prev-btn{
+    background-color: indianred;
+}
+.next-btn:hover{
+    background-color: seagreen;
+}
+.prev-btn:hover{
+    background-color: firebrick;
+}
+/* END OF MAIN QUIZ */
+

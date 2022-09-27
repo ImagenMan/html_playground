@@ -5,10 +5,257 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML PLAYGROUND</title>
+    <link rel="alternate" type="application/atom+xml" title="Sitewide Atom feed"
+          href="/feed.xml">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="site.css">
     <script src="script.js"></script>
+
+    <script src="https://unpkg.com/prismjs@1.20.0/components/prism-core.min.js"></script>
+    <script src="https://unpkg.com/prismjs@1.20.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="/js/htmx.js"></script>
+    <script src="/js/class-tools.js"></script>
+    <script src="/js/preload.js"></script>
+    <script src="/js/_hyperscript.js"></script>
+
+    <script>
+        htmx.onLoad(function(){
+            Prism.highlightAll();
+        })
+    </script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
 </head>
-<body>
-    <h1>Hello Dave</h1>
+<body hx-ext="class-tools, preload">
+
+    <div class="top-nav">
+        <div class="c">
+            <div class="menu">
+                <div class="logo-wrapper">
+                    <a href="/" class="logo light">&lt;<b>/</b>&gt; htm<b>x</b></a>
+                    <svg _="on click toggle .show on #nav" class="hamburger" viewBox="0 0 100 80" width="25" height="25" style="margin-bottom:-5px">
+                        <rect width="100" height="20" style="fill:rgb(52, 101, 164)" rx="10"></rect>
+                        <rect y="30" width="100" height="20" style="fill:rgb(52, 101, 164)" rx="10"></rect>
+                        <rect y="60" width="100" height="20" style="fill:rgb(52, 101, 164)" rx="10"></rect>
+                    </svg>
+                </div>
+                
+                <div id="nav" class="navigation"> <!-- don't boost on demo pages, sinon hijacks everything :/ -->
+                
+                    <div class="navigation-items" preload="mouseover">
+                        <div>
+                            <a href="/docs/">docs</a>
+                        </div>
+                        <div>
+                            <a href="/reference/">reference</a>
+                        </div>
+                        <div>
+                            <a href="/examples/">examples</a>
+                        </div>
+                        <div>
+                            <a href="/talk/">talk</a>
+                        </div>
+                        <div>
+                            <a href="https://github.com/sponsors/bigskysoftware?o=esb">sponsor</a>
+                        </div>
+                        <div>
+                            <input _="on keyup[key is 'Escape'] or click elsewhere
+                                        blur() then set my.value to ''
+                                      on keyup[key is '/'] from <body/>
+                                        focus()"
+                                    placeholder="&#128269;" type="text" id="search"/>
+                        </div>
+                    </div>
+                    <div class="github-stars">
+                        <iframe style="margin:auto;" src="https://ghbtns.com/github-btn.html?user=bigskysoftware&repo=htmx&type=star&count=true" frameborder="0" scrolling="0" width="150" height="20" title="Star htmx on GitHub"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+    <div class="c content ">
+        
+    <script src="https://unpkg.com/sinon@9.0.2/pkg/sinon.js"></script>
+    <script src="/js/demo.js"></script>
+    
+    <h2>Sortable</h2>
+    <p>In this example we show how to integrate the <a href="https://sortablejs.github.io/Sortable/">Sortable</a>
+    javascript library with htmx.</p>
+    <p>To begin we intialize the <code>.sortable</code> class with the <code>Sortable</code> javascript library:</p>
+    <pre><code class="language-js">htmx.onLoad(function(content) {
+        var sortables = content.querySelectorAll(&quot;.sortable&quot;);
+        for (var i = 0; i &lt; sortables.length; i++) {
+          var sortable = sortables[i];
+          new Sortable(sortable, {
+              animation: 150,
+              ghostClass: 'blue-background-class'
+          });
+        }
+    })
+    </code></pre>
+    <p>Next, we create a form that has some sortable divs within it, and we trigger an ajax request on the <code>end</code> event, fired
+    by Sortable.js:</p>
+    <pre><code class="language-html">&lt;form class=&quot;sortable&quot; hx-post=&quot;/items&quot; hx-trigger=&quot;end&quot;&gt;
+      &lt;div class=&quot;htmx-indicator&quot;&gt;Updating...&lt;/div&gt;
+      &lt;div&gt;&lt;input type='hidden' name='item' value='1'/&gt;Item 1&lt;/div&gt;
+      &lt;div&gt;&lt;input type='hidden' name='item' value='2'/&gt;Item 2&lt;/div&gt;
+      &lt;div&gt;&lt;input type='hidden' name='item' value='3'/&gt;Item 3&lt;/div&gt;
+      &lt;div&gt;&lt;input type='hidden' name='item' value='4'/&gt;Item 4&lt;/div&gt;
+      &lt;div&gt;&lt;input type='hidden' name='item' value='5'/&gt;Item 5&lt;/div&gt;
+    &lt;/form&gt;
+    </code></pre>
+    <p>Note that each div has a hidden input inside of it that specifies the item id for that row.</p>
+    <p>When the list is reordered via the Sortable.js drag-and-drop, the <code>end</code> event will be fired.  htmx will then post
+    the item ids in the new order to <code>/items</code>, to be persisted by the server.</p>
+    <p>That's it!</p>
+    <style>
+        #demo-server-info {
+            padding: 8px;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            height: 64px;
+            width: 100vw;
+            background-color: whitesmoke;
+            border-top: 2px solid gray;
+            overflow: hide;
+            margin: 0px;
+        }
+        #demo-server-info.show {
+            max-height: 45vh;
+            height: 500px;
+            overflow: scroll;
+        }
+        #demo-activity {
+            height:300px
+        }
+    
+        #demo-activity div {
+            vertical-align: top
+        }
+    
+        #demo-canvas {
+            margin-bottom: 500px;
+            padding-top: 12px;
+        }
+    
+    </style>
+    <script>
+        function toggleRequestInfo() {
+            var classList = document.getElementById("demo-server-info").classList;
+            classList.toggle("show");
+            if (classList.contains('show')) {
+                document.getElementById("request-info-toggler").innerHTML = "&downarrow; Hide"
+            } else {
+                document.getElementById("request-info-toggler").innerHTML = "&uparrow; Show"
+            }
+        }
+    </script>
+    <div id="demo-server-info">
+        <div>Server Requests<span id="request-count"></span> <a id="request-info-toggler" onclick="toggleRequestInfo()" style="cursor: pointer">&uparrow; Show</a></div>
+        <div id="demo-activity" class="row">
+            <div class="3 col" >
+                <ol id="demo-timeline" reversed>
+                </ol>
+            </div>
+            <div id="demo-current-request" class="9 col">
+            </div>
+        </div>
+    </div>
+    <h2>Demo</h2>
+    <div id="demo-canvas">
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script>
+    
+        //=========================================================================
+        // Fake Server Side Code
+        //=========================================================================
+        htmx.onLoad(function(content) {
+            var sortables = content.querySelectorAll(".sortable");
+            for (var i = 0; i < sortables.length; i++) {
+              var sortable = sortables[i];
+              new Sortable(sortable, {
+                  animation: 150,
+                  ghostClass: 'blue-background-class'
+              });
+            }
+        })
+        
+        var listItems = [1, 2, 3, 4, 5]
+        // routes
+        init("/demo", function(request, params){
+          return '<form id=example1" class="list-group col sortable" hx-post="/items" hx-trigger="end">' +
+          listContents()
+          + "\n</form>";
+        });
+        
+        onPost("/items", function (request, params) {
+          console.log(params);
+          listItems = params.item;
+          return listContents();
+        });
+        
+        // templates
+        function listContents() {
+          return '<div class="htmx-indicator">Updating...</div>' + listItems.map(function(val) {
+            return "  <div style='border:1px solid #DEDEDE; padding:12px; margin: 8px; width:200px' ><input type='hidden' name='item' value='" + val + "'/> Item " + val +"</div>";
+          }).join("\n");
+        }
+    
+    </script>
+    
+    
+    </div>
+    
+    <footer>
+        <div class="c content ">
+          <div class="row">
+            <div class="6 col footer-haiku">
+              <h2>haiku</h2>
+              <p><em>
+                javascript fatigue:<br>
+                longing for a hypertext<br>
+                already in hand
+              </em></p>
+            </div>
+            <div class="6 col footer-menu">
+              <div>
+                  <a href="/docs/">docs</a>
+              </div>
+              <div>
+                  <a href="/reference/">reference</a>
+              </div>
+              <div>
+                  <a href="/examples/">examples</a>
+              </div>
+              <div>
+                  <a href="/talk/">talk</a>
+              </div>
+              <div>
+                  <a href="https://github.com/sponsors/bigskysoftware?o=esb">sponsor</a>
+              </div>
+            </div>
+          </div>
+          <div class="row" style="text-align: center;">
+            <div class="col">
+                <img src="/img/bss_bars.png" style="max-width: 30px; margin-top: 3em;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    <script type="text/javascript"> docsearch({
+        apiKey: '47070108e6ce8dfee6beee94b83bee7d',
+        indexName: 'htmx',
+        inputSelector: '#search',
+        debug: false // Set debug to true if you want to inspect the dropdown
+    });
+    </script>
 </body>
 </html>
